@@ -1,0 +1,121 @@
+html, body {
+    height: 100%; /* Asegura que el body ocupe toda la altura */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8c8c8c;
+    color: #333;
+    display: grid;
+    grid-template-rows: 1fr auto; /* Dos filas: la primera toma el espacio disponible y la segunda es para el footer */
+    height: 100%; /* El body debe tener la altura completa */
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    color: #666666;
+}
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+form input, form select, form button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+form input, form select {
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form button {
+    width: auto;
+    background-color: #666666;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #515151;
+}
+.list {
+    margin-top: 20px;
+}
+.list h2 {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px 0;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.balance {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    margin-top: auto; /* Hace que el footer siempre quede al final de la página */
+}
+
+.content {
+    padding: 20px;
+}
+
+/* Estilos generales del botón */
+.btn {
+    display: inline-flex; /* Usa flexbox para alinear el icono y texto */
+    align-items: center; /* Centra el texto y el icono verticalmente */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    background-color: #666666; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto suave para cambiar color */
+}
+
+/* Cambiar color de fondo al pasar el ratón */
+.btn:hover {
+    background-color: #515151; /* Color de fondo más oscuro al hacer hover */
+}
+
+/* Espaciado entre el icono y el texto */
+.btn i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+/* Efecto de foco (cuando el botón está en foco, por ejemplo, al presionar TAB) */
+.btn:focus {
+    outline: none; /* Eliminar el contorno por defecto del navegador */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.6); /* Agregar sombra verde */
+}

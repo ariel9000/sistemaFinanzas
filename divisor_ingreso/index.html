@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Ingresos y Ahorros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label, input, select {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .resultados {
+      margin-top: 20px;
+    }
+    .resultado {
+      background-color: #e7f5e6;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Gestor de Ingresos</h2>
+    <label for="ingreso">Ingresa tu ingreso mensual (Bs):</label>
+    <input type="number" id="ingreso" placeholder="Ejemplo: 200">
+
+    <label for="necesidades">% para necesidades (recomendado 50%):</label>
+    <input type="number" id="necesidades" value="50">
+
+    <label for="gustos">% para gustos (recomendado 30%):</label>
+    <input type="number" id="gustos" value="30">
+
+    <label for="ahorro">% para ahorro (recomendado 20%):</label>
+    <input type="number" id="ahorro" value="20">
+
+    <label for="fondo">% del ahorro para fondo de emergencia (recomendado 50% del ahorro):</label>
+    <input type="number" id="fondo" value="50">
+
+    <button onclick="calcularReglaAhorro()">Calcular distribución</button>
+
+    <div class="resultados" id="resultados"></div>
+  </div>
+
+  <script>
+    function calcularReglaAhorro() {
+      const ingreso = parseFloat(document.getElementById('ingreso').value);
+      const pctNecesidades = parseFloat(document.getElementById('necesidades').value);
+      const pctGustos = parseFloat(document.getElementById('gustos').value);
+      const pctAhorro = parseFloat(document.getElementById('ahorro').value);
+      const pctFondo = parseFloat(document.getElementById('fondo').value);
+
+      if (isNaN(ingreso) || ingreso <= 0 || isNaN(pctNecesidades) || isNaN(pctGustos) || isNaN(pctAhorro) || isNaN(pctFondo)) {
+        alert("Por favor, completa todos los campos con valores válidos.");
+        return;
+      }
+
+      const totalPorcentaje = pctNecesidades + pctGustos + pctAhorro;
+      if (totalPorcentaje !== 100) {
+        alert("La suma de los porcentajes debe ser 100%.");
+        return;
+      }
+
+      const necesidades = ingreso * (pctNecesidades / 100);
+      const gustos = ingreso * (pctGustos / 100);
+      const ahorroTotal = ingreso * (pctAhorro / 100);
+
+      const fondoEmergencia = ahorroTotal * (pctFondo / 100);
+      const ahorroMeta = ahorroTotal - fondoEmergencia;
+
+      const resultados = `
+        <div class="resultado"><strong>Necesidades (${pctNecesidades}%):</strong> Bs ${necesidades.toFixed(2)}</div>
+        <div class="resultado"><strong>Gustos (${pctGustos}%):</strong> Bs ${gustos.toFixed(2)}</div>
+        <div class="resultado"><strong>Ahorro total (${pctAhorro}%):</strong> Bs ${ahorroTotal.toFixed(2)}</div>
+        <div class="resultado"><strong> - Fondo de emergencia (${pctFondo}% del ahorro):</strong> Bs ${fondoEmergencia.toFixed(2)}</div>
+        <div class="resultado"><strong> - Ahorro para metas:</strong> Bs ${ahorroMeta.toFixed(2)}</div>
+      `;
+
+      document.getElementById('resultados').innerHTML = resultados;
+    }
+  </script>
+</body>
+</html>
